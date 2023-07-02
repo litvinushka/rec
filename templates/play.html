@@ -14,9 +14,20 @@
 
         // Обработчик события получения аудио данных
         socket.on('play_audio', function(data) {
-            // Воспроизведение аудио данных
-            // Здесь можно добавить логику для воспроизведения аудио на сайте
-            console.log('Received audio data:', data);
+            // Создание аудиоэлемента
+            const audio = document.createElement('audio');
+            audio.controls = true;
+
+            // Создание источника аудиофайла
+            const source = document.createElement('source');
+            source.src = data.audio_url;  // URL аудиофайла с сервера
+            source.type = 'audio/wav';
+
+            // Добавление источника к аудиоэлементу
+            audio.appendChild(source);
+
+            // Добавление аудиоэлемента на страницу
+            document.getElementById('dialog').appendChild(audio);
         });
     </script>
 </body>

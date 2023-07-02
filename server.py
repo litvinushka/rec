@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-CORS(app)
+CORS(app,origins='*')
 
 audio_files = []  # Список аудиозаписей
 
@@ -17,11 +17,11 @@ def upload_audio_file():
     audio_file = request.data
 
     # Сохранение аудиофайла на сервере
-    with open('uploaded_audio.wav', 'wb') as file:
+    with open('audio.wav', 'wb') as file:
         file.write(audio_file)
 
     # Добавление аудиозаписи в список
-    audio_files.append('uploaded_audio.wav')
+    audio_files.append('audio.wav')
 
     # Отправка списка аудиозаписей на клиент
     socketio.emit('audio_list', audio_files, broadcast=True)
@@ -31,7 +31,7 @@ def upload_audio_file():
 @app.route('/audio')
 def get_audio_file():
     # Возвращение сохраненного аудиофайла
-    return send_file('uploaded_audio.wav', mimetype='audio/wav')
+    return send_file('audio.wav', mimetype='audio/wav')
 
 @socketio.on('connect')
 def handle_connect():

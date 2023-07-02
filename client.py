@@ -16,5 +16,5 @@ def send_audio_file_to_server(server_url, audio_file_path):
         print(e)
 
     ws.close()
-audio_file_path = "audio.mp3"
+audio_file_path = "audio.wav"
 send_audio_file_to_server(server_url, audio_file_path)
