@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dialog Listener</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Dialog Listener</h1>
+    <div id="dialog"></div>
+
+    <script>
+        // Подключение к серверу WebSocket
+        const socket = io.connect('http://localhost:5000');
+
+        // Обработчик события получения аудио данных
+        socket.on('play_audio', function(data) {
+            // Воспроизведение аудио данных
+            // Здесь можно добавить логику для воспроизведения аудио на сайте
+            console.log('Received audio data:', data);
+        });
+    </script>
+</body>
+</html>
